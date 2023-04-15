@@ -38,9 +38,18 @@ public class SpotifyRepository {
     }
 
     public User createUser(String name, String mobile) {
+
+        User user = new User();
+        user.setName(name);
+        user.setMobile(mobile);
+        users.add(user);
+        return user;
     }
 
     public Artist createArtist(String name) {
+        Artist artist = new Artist(name);
+        artists.add(artist);
+        return artist;
     }
 
     public Album createAlbum(String title, String artistName) {
@@ -66,8 +75,32 @@ public class SpotifyRepository {
     }
 
     public String mostPopularArtist() {
+        int max = -1 ;
+        String ans = "";
+
+        for(Artist a :artists)
+        {
+            if(a.getLikes()>max)
+            {
+                max = a.getLikes();
+                ans = a.getName();
+            }
+        }
+        return ans ;
     }
 
     public String mostPopularSong() {
+        int max = -1 ;
+        String ans = "";
+
+        for(Song s: songs)
+        {
+            if(s.getLikes()>max)
+            {
+                max = s.getLikes();
+                ans = s.getTitle();
+            }
+        }
+        return ans;
     }
 }
