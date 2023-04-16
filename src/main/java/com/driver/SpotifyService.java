@@ -20,10 +20,11 @@ public class SpotifyService {
     }
 
     public Album createAlbum(String title, String artistName) {
-
+    return spotifyRepository.createAlbum(title,artistName);
     }
 
     public Song createSong(String title, String albumName, int length) throws Exception {
+        return spotifyRepository.createSong(title, albumName, length);
 
     }
 

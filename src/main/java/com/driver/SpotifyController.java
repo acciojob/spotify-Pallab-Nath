@@ -33,6 +33,7 @@ public class SpotifyController {
         //If the artist does not exist, first create an artist with given name
         //Create an album with given title and artist
 
+        Album album = spotifyService.createAlbum(title,artistName);
         return "Success";
     }
 
@@ -40,8 +41,15 @@ public class SpotifyController {
     public String createSong(String title, String albumName, int length) throws Exception{
         //If the album does not exist in database, throw "Album does not exist" exception
         //Create and add the song to respective album
-
-        return "Success";
+        try
+        {
+            Song s = spotifyService.createSong(title, albumName, length);
+            return "Success";
+        }
+        catch(Exception e)
+        {
+            throw new Exception("Album does not exist");
+        }
     }
 
     @PostMapping("/add-playlist-on-length")
